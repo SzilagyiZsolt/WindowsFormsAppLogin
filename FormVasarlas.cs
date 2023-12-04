@@ -44,9 +44,9 @@ namespace WindowsFormsAppLogin
             }
             catch (MySqlException ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
+            updateTermekekLista();
         }
 
         private void listBoxTermekek_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,10 +56,12 @@ namespace WindowsFormsAppLogin
                 return;
             }
             Termek kivalasztottTermek = (Termek)listBoxTermekek.SelectedItem;
-            textBox_termekid.Text=kivalasztottTermek.termekid.ToString();
+            textBox_termekid.Text = kivalasztottTermek.termekid.ToString();
             textBox_termeknev.Text = kivalasztottTermek.termeknev;
             numericUpDown_ar.Value = kivalasztottTermek.ar;
             numericUpDown_raktarKeszlet.Value = kivalasztottTermek.db;
+            numericUpDown_vasaroltDarab.Maximum = kivalasztottTermek.db;
+            numericUpDown_vasaroltDarab.Value=1;
         }
 
         private void FormVasarlas_FormClosing(object sender, FormClosingEventArgs e)
@@ -77,6 +79,41 @@ namespace WindowsFormsAppLogin
         }
 
         private void button_vasarlas_Click(object sender, EventArgs e)
+        {
+            MySqlTransaction tr = null;
+            try
+            {
+                tr=Program.connection.BeginTransaction();
+                Program.command.Transaction = tr;
+                Program.command.CommandText="INSERT INTO `vasarlas` (`vasarloid`, `termekid`, `vasaroltdb`) VALUES (@vasarloid, @termekid, @vasaroltdb);";
+                Program.command.Parameters.Clear();
+                Program.command.Parameters.AddWithValue("@vasarloid", Program.UserId);
+                Program.command.Parameters.AddWithValue("@termekid", textBox_termekid.Text);
+                Program.command.Parameters.AddWithValue("@vasaroltdb", numericUpDown_vasaroltDarab.Value);
+                Program.command.ExecuteNonQuery();
+                Program.command.CommandText=$"UPDATE `termek` SET`db`=db-{numericUpDown_vasaroltDarab.Value} WHERE `termekid`={textBox_termekid.Text};";
+                Program.command.ExecuteNonQuery();
+                tr.Commit();
+                textBox_termekid.Text="";
+                textBox_termeknev.Text="";
+                numericUpDown_ar.Value= 0;
+                numericUpDown_raktarKeszlet.Value= 0;
+                numericUpDown_vasaroltDarab.Value= 0;
+                MessageBox.Show("Sikeres vásárlás!");
+            }
+            catch (MySqlException ex)
+            {
+                tr.Rollback();
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void numericUpDown_vasaroltDarab_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown_ar_ValueChanged(object sender, EventArgs e)
         {
 
         }
