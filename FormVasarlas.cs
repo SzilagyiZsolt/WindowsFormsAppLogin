@@ -132,7 +132,8 @@ namespace WindowsFormsAppLogin
 
         private void módosításToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form_Modositas formmodositastermek = new Form_Modositas("módosítás");
+            formmodositastermek.ShowDialog();
         }
     }
 }

@@ -64,8 +64,6 @@ namespace WindowsFormsAppLogin
             textBox_torlestermeknev.Text = kivalasztottToroltTermek.termeknev;
             numericUpDown_ar.Value = kivalasztottToroltTermek.ar;
             numericUpDown_raktarKeszlet.Value = kivalasztottToroltTermek.db;
-            numericUpDown_vasaroltDarab.Maximum = kivalasztottToroltTermek.db;
-            numericUpDown_vasaroltDarab.Value = 1;
         }
 
         private void textBox_torlestermekid_TextChanged(object sender, EventArgs e)
