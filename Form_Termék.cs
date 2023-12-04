@@ -21,7 +21,7 @@ namespace WindowsFormsAppLogin
 
         private void Form_Termék_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button_létrehozás_Click(object sender, EventArgs e)

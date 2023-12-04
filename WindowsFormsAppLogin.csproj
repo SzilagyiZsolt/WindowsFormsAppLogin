@@ -163,7 +163,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Fasticon-Shop-Cart-Shop-cart.24.png" />
-    <Content Include="vasarlas.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

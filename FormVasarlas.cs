@@ -126,8 +126,13 @@ namespace WindowsFormsAppLogin
 
         private void törlésToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form_Termék formujtermek = new Form_Termék("törlés");
-            formujtermek.ShowDialog();
+            Form_Törles formtorlestermek = new Form_Törles("törlés");
+            formtorlestermek.ShowDialog();
+        }
+
+        private void módosításToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
