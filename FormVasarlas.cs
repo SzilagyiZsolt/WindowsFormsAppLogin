@@ -46,7 +46,7 @@ namespace WindowsFormsAppLogin
             {
                 MessageBox.Show(ex.Message);
             }
-            updateTermekekLista();
+            //updateTermekekLista();
         }
 
         private void listBoxTermekek_SelectedIndexChanged(object sender, EventArgs e)
@@ -80,6 +80,11 @@ namespace WindowsFormsAppLogin
 
         private void button_vasarlas_Click(object sender, EventArgs e)
         {
+            string szoveg = $"Valóban meg akar vásárolni {numericUpDown_vasaroltDarab.Value} db {textBox_termeknev.Text} terméket {numericUpDown_ar.Value*numericUpDown_vasaroltDarab.Value}Ft értékben?";
+            if (MessageBox.Show(szoveg, "megerősítés", MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.No)
+            {
+
+            }
             MySqlTransaction tr = null;
             try
             {
@@ -94,11 +99,6 @@ namespace WindowsFormsAppLogin
                 Program.command.CommandText=$"UPDATE `termek` SET`db`=db-{numericUpDown_vasaroltDarab.Value} WHERE `termekid`={textBox_termekid.Text};";
                 Program.command.ExecuteNonQuery();
                 tr.Commit();
-                textBox_termekid.Text="";
-                textBox_termeknev.Text="";
-                numericUpDown_ar.Value= 0;
-                numericUpDown_raktarKeszlet.Value= 0;
-                numericUpDown_vasaroltDarab.Value= 0;
                 MessageBox.Show("Sikeres vásárlás!");
             }
             catch (MySqlException ex)
@@ -116,6 +116,12 @@ namespace WindowsFormsAppLogin
         private void numericUpDown_ar_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void újToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form_Termék formujtermek = new Form_Termék("új");
+            formujtermek.ShowDialog();
         }
     }
 }

@@ -12,6 +12,7 @@ namespace WindowsFormsAppLogin
         //-- a többi osztályban (Form-ok) is használható
         public static FormLogin formLogin = null;
         public static FormVasarlas formVasarlas = null;
+        public static Form_Termék formTermek = null;
         public static MySqlConnection connection = null;
         public static MySqlCommand command = null;
         public static int UserId;
