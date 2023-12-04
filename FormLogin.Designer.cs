@@ -42,7 +42,7 @@
             this.label1.Location = new System.Drawing.Point(15, 28);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(205, 31);
+            this.label1.Size = new System.Drawing.Size(164, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Felhasználónév";
             // 
@@ -50,7 +50,7 @@
             // 
             this.textBox_nev.Location = new System.Drawing.Point(20, 72);
             this.textBox_nev.Name = "textBox_nev";
-            this.textBox_nev.Size = new System.Drawing.Size(382, 37);
+            this.textBox_nev.Size = new System.Drawing.Size(382, 31);
             this.textBox_nev.TabIndex = 1;
             this.textBox_nev.Text = "Lajos";
             // 
@@ -59,7 +59,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(20, 141);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 31);
+            this.label2.Size = new System.Drawing.Size(74, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "Jelszo";
             // 
@@ -67,7 +67,7 @@
             // 
             this.textBox_jelszo.Location = new System.Drawing.Point(25, 182);
             this.textBox_jelszo.Name = "textBox_jelszo";
-            this.textBox_jelszo.Size = new System.Drawing.Size(377, 37);
+            this.textBox_jelszo.Size = new System.Drawing.Size(377, 31);
             this.textBox_jelszo.TabIndex = 3;
             this.textBox_jelszo.Text = "1234";
             // 
@@ -83,7 +83,7 @@
             // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 30F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(431, 352);
             this.Controls.Add(this.button_login);

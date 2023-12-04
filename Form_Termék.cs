@@ -21,7 +21,14 @@ namespace WindowsFormsAppLogin
 
         private void Form_Termék_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(this.mod);
+
+        }
+
+        private void button_létrehozás_Click(object sender, EventArgs e)
+        {
+            Program.command.CommandText=$"INSERT INTO `termek` (`termeknev`, `ar`, `db`) VALUES ('{textBox_ujtermeknev.Text}', '{numericUpDown_ujar.Value}', '{numericUpDown_ujraktarKeszlet.Value}');";
+            Program.command.ExecuteNonQuery();
+            MessageBox.Show("Sikeres felvétel!");
         }
     }
 }

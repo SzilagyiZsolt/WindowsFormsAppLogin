@@ -123,5 +123,11 @@ namespace WindowsFormsAppLogin
             Form_Termék formujtermek = new Form_Termék("új");
             formujtermek.ShowDialog();
         }
+
+        private void törlésToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form_Termék formujtermek = new Form_Termék("törlés");
+            formujtermek.ShowDialog();
+        }
     }
 }
