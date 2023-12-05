@@ -29,6 +29,7 @@ namespace WindowsFormsAppLogin
             Program.command.CommandText=$"INSERT INTO `termek` (`termeknev`, `ar`, `db`) VALUES ('{textBox_ujtermeknev.Text}', '{numericUpDown_ujar.Value}', '{numericUpDown_ujraktarKeszlet.Value}');";
             Program.command.ExecuteNonQuery();
             MessageBox.Show("Sikeres felvétel!");
+            Program.formVasarlas.updateTermekekLista();
         }
     }
 }

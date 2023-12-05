@@ -76,6 +76,7 @@ namespace WindowsFormsAppLogin
             Program.command.CommandText =$"DELETE FROM `termek` WHERE termek.termekid = {textBox_torlestermekid.Text.ToString()};";
             Program.command.ExecuteNonQuery();
             MessageBox.Show("Sikeres törlés!");
+            Program.formVasarlas.updateTermekekLista();
         }
     }
 }

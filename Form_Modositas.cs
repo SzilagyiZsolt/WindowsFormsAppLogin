@@ -25,6 +25,7 @@ namespace WindowsFormsAppLogin
             Program.command.CommandText = $"UPDATE `termek` SET `termeknev`='{textBox_modositastermeknev.Text}',`ar`='{numericUpDown_modositasar.Value}',`db`='{numericUpDown_modositasraktarKeszlet.Value}' WHERE termek.termekid={textBox_modositastermekid.Text.ToString()}";
             Program.command.ExecuteNonQuery();
             MessageBox.Show("Sikeres módosítás!");
+            Program.formVasarlas.updateTermekekLista();
         }
         private void updateModositastermekekLista()
         {

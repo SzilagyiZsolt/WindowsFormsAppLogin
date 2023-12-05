@@ -24,23 +24,13 @@ namespace WindowsFormsAppLogin
             updateTermekekLista();
         }
 
-        private void updateTermekekLista()
+        public void updateTermekekLista()
         {
             listBoxTermekek.Items.Clear();
-            Program.command.CommandText = "SELECT `termekid`,`termeknev`,`ar`,`db` FROM `termek` WHERE 1 ORDER BY termeknev";
+            listBoxTermekek.Items.AddRange(Program.db.GetTermekek().ToArray());
             try
             {
-                if (Program.connection.State != ConnectionState.Open)
-                {
-                    Program.connection.Open();
-                }
-                using (MySqlDataReader dr = Program.command.ExecuteReader())
-                {
-                    while (dr.Read())
-                    {
-                        listBoxTermekek.Items.Add(new Termek(dr.GetInt32("termekid"), dr.GetString("termeknev"), dr.GetInt32("ar"), dr.GetInt32("db")));
-                    }
-                }
+                nyit();
             }
             catch (MySqlException ex)
             {
@@ -83,28 +73,15 @@ namespace WindowsFormsAppLogin
             string szoveg = $"Valóban meg akar vásárolni {numericUpDown_vasaroltDarab.Value} db {textBox_termeknev.Text} terméket {numericUpDown_ar.Value*numericUpDown_vasaroltDarab.Value}Ft értékben?";
             if (MessageBox.Show(szoveg, "megerősítés", MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.No)
             {
-
+                return;
             }
-            MySqlTransaction tr = null;
-            try
+            if (Program.db.vasarlas(int.Parse(textBox_termekid.Text), numericUpDown_vasaroltDarab.Value))
             {
-                tr=Program.connection.BeginTransaction();
-                Program.command.Transaction = tr;
-                Program.command.CommandText="INSERT INTO `vasarlas` (`vasarloid`, `termekid`, `vasaroltdb`) VALUES (@vasarloid, @termekid, @vasaroltdb);";
-                Program.command.Parameters.Clear();
-                Program.command.Parameters.AddWithValue("@vasarloid", Program.UserId);
-                Program.command.Parameters.AddWithValue("@termekid", textBox_termekid.Text);
-                Program.command.Parameters.AddWithValue("@vasaroltdb", numericUpDown_vasaroltDarab.Value);
-                Program.command.ExecuteNonQuery();
-                Program.command.CommandText=$"UPDATE `termek` SET`db`=db-{numericUpDown_vasaroltDarab.Value} WHERE `termekid`={textBox_termekid.Text};";
-                Program.command.ExecuteNonQuery();
-                tr.Commit();
                 MessageBox.Show("Sikeres vásárlás!");
             }
-            catch (MySqlException ex)
+            else
             {
-                tr.Rollback();
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Sikertelen vásárlás!");
             }
         }
 

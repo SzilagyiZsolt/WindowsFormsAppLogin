@@ -86,7 +86,7 @@
             this.numericUpDown_ujar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.numericUpDown_ujar.Location = new System.Drawing.Point(390, 156);
             this.numericUpDown_ujar.Maximum = new decimal(new int[] {
-            100000,
+            10000000,
             0,
             0,
             0});
@@ -109,6 +109,11 @@
             // 
             this.numericUpDown_ujraktarKeszlet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.numericUpDown_ujraktarKeszlet.Location = new System.Drawing.Point(390, 196);
+            this.numericUpDown_ujraktarKeszlet.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numericUpDown_ujraktarKeszlet.Name = "numericUpDown_ujraktarKeszlet";
             this.numericUpDown_ujraktarKeszlet.Size = new System.Drawing.Size(120, 26);
             this.numericUpDown_ujraktarKeszlet.TabIndex = 10;
